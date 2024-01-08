@@ -27,14 +27,17 @@ export class Platform {
 
         for (let i = 0; i <= this.cols; i++) {
             if (Math.random() < App.config.diamonds.chance) {
-                const diamond = new Diamond(this.tileSize * i, -y);
-                this.container.addChild(diamond.sprite);
-                this.diamonds.push(diamond);
+                this.createDiamond(this.tileSize * i, -y);
             }
         }
     }
 
-
+    createDiamond(x, y) {
+        const diamond = new Diamond(x, y);
+        this.container.addChild(diamond.sprite);
+        diamond.createBody();
+        this.diamonds.push(diamond);
+    }
 
     createBody() {
         this.body = Matter.Bodies.rectangle(this.width / 2 + this.container.x, this.height / 2 + this.container.y, this.width, this.height, {friction: 0, isStatic: true});
