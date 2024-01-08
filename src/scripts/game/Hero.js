@@ -1,6 +1,7 @@
 import * as PIXI from "pixi.js";
 import * as Matter from "matter-js";
 import { App } from "../system/App";
+import { Diamond } from "./Diamond";
 
 export class Hero {
     constructor() {
@@ -11,6 +12,16 @@ export class Hero {
         this.dy = App.config.hero.jumpSpeed;
         this.maxJumps = App.config.hero.maxJumps;
         this.jumpIndex = 0;
+        this.score = 0;
+    }
+
+    collectDiamond(diamond) {
+        console.log(diamond);
+        Matter.World.remove(App.physics.world, diamond.body);
+        diamond.sprite.destroy();
+        diamond.sprite = null;
+        ++this.score;
+
     }
 
     startJump() {
