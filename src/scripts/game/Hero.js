@@ -21,6 +21,7 @@ export class Hero {
         diamond.sprite.destroy();
         diamond.sprite = null;
         ++this.score;
+        this.sprite.emit("score");
 
     }
 
