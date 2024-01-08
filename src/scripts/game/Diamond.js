@@ -7,6 +7,16 @@ export class Diamond {
         App.app.ticker.add(this.update, this);
     }
 
+
+    destroy() {
+        if (this.sprite) {
+            App.app.ticker.remove(this.update, this);
+            Matter.World.remove(App.physics.world, this.body);
+            this.sprite.destroy();
+            this.sprite = null;
+        }
+    }
+
     createSprite(x, y) {
         this.sprite = App.sprite("diamond");
         this.sprite.x = x;

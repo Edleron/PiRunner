@@ -8,6 +8,10 @@ export class Background {
         this.createSprites();
     }
 
+    destroy() {
+        this.container.destroy();
+    }
+
     createSprites() {
         this.sprites = [];
 

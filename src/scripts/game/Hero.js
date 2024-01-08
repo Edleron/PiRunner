@@ -7,7 +7,7 @@ export class Hero {
     constructor() {
         this.createSprite();
         this.createBody();
-        App.app.ticker.add(this.update.bind(this));
+        App.app.ticker.add(this.update, this);
 
         this.dy = App.config.hero.jumpSpeed;
         this.maxJumps = App.config.hero.maxJumps;
@@ -16,13 +16,9 @@ export class Hero {
     }
 
     collectDiamond(diamond) {
-        console.log(diamond);
-        Matter.World.remove(App.physics.world, diamond.body);
-        diamond.sprite.destroy();
-        diamond.sprite = null;
+        diamond.destroy();
         ++this.score;
         this.sprite.emit("score");
-
     }
 
     startJump() {
@@ -67,7 +63,15 @@ export class Hero {
     update() {
         this.sprite.x = this.body.position.x - this.sprite.width / 2;
         this.sprite.y = this.body.position.y - this.sprite.height / 2;
+
+        if (this.sprite.y > window.innerHeight) {
+            this.sprite.emit("die");
+        }
     }
 
-
+    destroy() {
+        App.app.ticker.remove(this.update, this);
+        Matter.World.remove(App.physics.world, this.body);
+        this.sprite.destroy();
+    }
 }

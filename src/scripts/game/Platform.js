@@ -22,6 +22,13 @@ export class Platform {
         this.createDiamonds();
     }
 
+
+    destroy() {
+        Matter.World.remove(App.physics.world, this.body);
+        this.diamonds.forEach(diamond => diamond.destroy());
+        this.container.destroy();
+    }
+
     createDiamonds() {
         const y = App.config.diamonds.offset.min + Math.random() * (App.config.diamonds.offset.max - App.config.diamonds.offset.min);
 
