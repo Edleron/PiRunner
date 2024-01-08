@@ -6,5 +6,11 @@ export const Config = {
     scenes: {
         "Game": Game
     },
-    bgSpeed: 2
+    bgSpeed: 2,
+    hero: {
+        position: {
+            x: 350,
+            y: 410
+        }
+    }
 };
