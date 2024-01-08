@@ -47,4 +47,12 @@ export class Platform {
         this.container.y = window.innerHeight - this.height;
     }
 
+    move() {
+        if (this.body) {
+            Matter.Body.setPosition(this.body, {x: this.body.position.x + this.dx, y: this.body.position.y});
+            this.container.x = this.body.position.x - this.width / 2;
+            this.container.y = this.body.position.y - this.height / 2;
+        }
+    }
+
 }
