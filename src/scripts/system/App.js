@@ -30,6 +30,10 @@ class Application {
         const runner = Matter.Runner.create();
         Matter.Runner.run(runner, this.physics);
 
+        // this.matterDebug();
+    }
+
+    matterDebug() {
         const render = Matter.Render.create({
             element: document.getElementById("matter-canvas"),
             engine: this.physics,
@@ -42,7 +46,7 @@ class Application {
             }
         });
 
-        // Matter.Render.run(render);
+        Matter.Render.run(render);
     }
 
     res(key) {

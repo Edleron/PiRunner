@@ -18,6 +18,11 @@ export class Game extends Scene {
     createHero() {
         this.hero = new Hero();
         this.container.addChild(this.hero.sprite);
+
+        this.container.interactive = true;
+        this.container.on("pointerdown", () => {
+            this.hero.startJump();
+        });
     }
 
     update(dt) {
@@ -29,4 +34,6 @@ export class Game extends Scene {
         this.bg = new Background();
         this.container.addChild(this.bg.container);
     }
+
+
 }

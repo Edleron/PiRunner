@@ -25,9 +25,11 @@ export const Config = {
     },
     bgSpeed: 2,
     hero: {
+        jumpSpeed: 15,
+        maxJumps: 2,
         position: {
             x: 350,
-            y: 410
+            y: 400
         }
     }
 };
