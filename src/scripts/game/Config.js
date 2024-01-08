@@ -5,5 +5,6 @@ export const Config = {
     loader: Tools.massiveRequire(require["context"]('./../../sprites/', true, /\.(mp3|png|jpe?g)$/)),
     scenes: {
         "Game": Game
-    }
+    },
+    bgSpeed: 2
 };
