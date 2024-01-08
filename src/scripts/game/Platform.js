@@ -22,7 +22,7 @@ export class Platform {
         this.body = Matter.Bodies.rectangle(this.width / 2 + this.container.x, this.height / 2 + this.container.y, this.width, this.height, {friction: 0, isStatic: true});
         Matter.World.add(App.physics.world, this.body);
         this.body.gamePlatform = this;
-        this.body.render.fillStyle = "#000000";
+        // this.body.render.fillStyle = "#000000";
     }
 
     createTiles() {

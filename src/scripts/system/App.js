@@ -42,7 +42,7 @@ class Application {
             }
         });
 
-        //Matter.Render.run(render);
+        // Matter.Render.run(render);
     }
 
     res(key) {
