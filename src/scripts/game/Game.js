@@ -1,18 +1,18 @@
-import { App } from "../system/App";
 import { Scene } from "../system/Scene";
 import { Background } from "./Background";
 import { Hero } from "./Hero";
-import { Platform } from "./Platform";
+import { Platforms } from "./Platforms";
 
 export class Game extends Scene {
     create() {
         this.createBackground();
-        this.createPlatform({
-            rows: 4,
-            cols: 6,
-            x: 200
-        });
+        this.createPlatforms();
         this.createHero();
+    }
+
+    createPlatforms() {
+        this.platforms = new Platforms();
+        this.container.addChild(this.platforms.container);
     }
 
     createHero() {
@@ -20,13 +20,9 @@ export class Game extends Scene {
         this.container.addChild(this.hero.sprite);
     }
 
-    createPlatform(data) {
-        const platform = new Platform(data.rows, data.cols, data.x);
-        this.container.addChild(platform.container);
-    }
-
     update(dt) {
         this.bg.update(dt);
+        this.platforms.update(dt);
     }
 
     createBackground() {
