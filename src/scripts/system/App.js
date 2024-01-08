@@ -13,7 +13,7 @@ class Application {
         this.config = config;
 
         this.app = new PIXI.Application({resizeTo: window});
-        document.body.appendChild(this.app.view);
+        document.getElementById("pixi-canvas").appendChild(this.app.view);
 
         this.scenes = new ScenesManager();
         this.app.stage.interactive = true;
@@ -29,6 +29,20 @@ class Application {
         this.physics = Matter.Engine.create();
         const runner = Matter.Runner.create();
         Matter.Runner.run(runner, this.physics);
+
+        const render = Matter.Render.create({
+            element: document.getElementById("matter-canvas"),
+            engine: this.physics,
+            options: {
+                width: window.innerWidth,
+                height: window.innerHeight,
+                pixelRatio: 1,
+                background: "#fafafa",
+                wireframes: false
+            }
+        });
+
+        Matter.Render.run(render);
     }
 
     res(key) {
