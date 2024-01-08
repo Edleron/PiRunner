@@ -28,7 +28,6 @@ export class Platform {
         this.container.addChild(tile);
         tile.x = col * tile.width;
         tile.y = row * tile.height;
-        console.log(tile)
     }
 
     createContainer(x) {
