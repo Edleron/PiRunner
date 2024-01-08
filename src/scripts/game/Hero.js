@@ -14,8 +14,9 @@ export class Hero {
     }
 
     startJump() {
-        if (this.jumpIndex < this.maxJumps) {
+        if (this.platform || this.jumpIndex === 1) {
             ++this.jumpIndex;
+            this.platform = null;
             Matter.Body.setVelocity(this.body, {x: 0, y: -this.dy});
         }
     }
@@ -31,6 +32,11 @@ export class Hero {
         Matter.World.add(App.physics.world, this.body);
         this.body.gameHero = this;
         this.body.render.fillStyle = "#000000";
+    }
+
+    stayOnPlatform(platform) {
+        this.platform = platform;
+        this.jumpIndex = 0;
     }
 
     createSprite() {
